@@ -1,0 +1,15 @@
+<h2>Add Post</h2>
+<div class="card card-body mb-3">
+  <form>
+    <div class="form-group">
+      <label>Title</label>
+      <input type="text" class="form-control" name="title" #title>
+    </div>
+    <div class="form-group">
+      <label>Body</label>
+      <input type="text" class="form-control" name="body" #body>
+    </div>
+    <!--在要取值的元素加上#id，然後在btn加上click事件跟自訂函數，可直接取id.value，先不考慮雙向binding這麼複雜的話-->
+    <button (click)="addPost(title.value, body.value)" class="btn btn-dark btn-block">Add Post</button>
+  </form>
+</div>

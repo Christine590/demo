@@ -1,0 +1,183 @@
+<!-- users.component的Template -->
+
+<!-- <p>users works!</p> -->
+<!-- {{ users}} -->
+
+<button (click)="showUserForm = !showUserForm" class="btn btn-dark mt-3 mb-3">Add User</button>
+<div class="card card-body mb-3" *ngIf="showUserForm">
+  <h2>Add User</h2>
+  <!-- <form (submit)="onSubmit($event)"> -->
+  <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
+
+    <div class="form-group">
+      <label>First Name</label>
+      <!-- keydown是點擊輸入框就算；keyup是點擊後首次放開輸入框；另有keypree/focus/blur/cut/paste/copy等，用法例如：<input (keypress)="fireEvent($event)">-->
+      <!-- (1) []表示將值從component(ts檔)bind到template(html來)
+           (2) ()表示從template(html檔)bind到component(ts檔)的事件event -->
+      <input 
+        [(ngModel)]="user.firstName" 
+        [ngClass]="{'is-invalid':userFirstName.errors && userFirstName.touched}"
+        type="text" 
+        class="form-control is-invalid" 
+        name="firstName"
+        #userFirstName="ngModel"
+        required
+        minlength="2"
+      >
+      <!-- 加上?表示error可有可無(?) 原為隱藏僅在required錯誤時顯示 -->
+      <div [hidden]="!userFirstName.errors?.required" class="invalid-feedback"> <!--在form group中才會生效-->
+        First name reruired
+      </div>
+
+      <div [hidden]="!userFirstName.errors?.minlength" class="invalid-feedback"> <!--在form group中才會生效-->
+        Must be at least 2 characters
+      </div>
+    </div>
+    <!-- 若於html寫入{{ user.firstName }}，則可將type in的值即刻顯示出來!!! -->
+    <div class="form-group">
+      <label>Last Name</label>
+      <!-- <input [(ngModel)]="user.lastName" type="text" class="form-control" name="lastName"> -->
+
+      <input 
+        [(ngModel)]="user.lastName" 
+        [ngClass]="{'is-invalid':userLastName.errors && userLastName.touched}"
+        type="text" 
+        class="form-control is-invalid" 
+        name="lastName"
+        #userLastName="ngModel"
+        required
+        minlength="2"
+      >
+      <!-- 加上?表示error可有可無(?) 原為隱藏僅在required錯誤時顯示 -->
+      <div [hidden]="!userLastName.errors?.required" class="invalid-feedback"> <!--在form group中才會生效-->
+        Last name reruired
+      </div>
+
+      <div [hidden]="!userLastName.errors?.minlength" class="invalid-feedback"> <!--在form group中才會生效-->
+        Must be at least 2 characters
+      </div>
+
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <!-- <input [(ngModel)]="user.email" type="text" class="form-control" name="email"> -->
+
+      <input 
+        [(ngModel)]="user.email" 
+        [ngClass]="{'is-invalid':userEmail.errors && userEmail.touched}"
+        type="text" 
+        class="form-control is-invalid" 
+        name="email"
+        #userEmail="ngModel"
+        required
+        pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+      >
+      <!-- 加上?表示error可有可無(?) 原為隱藏僅在required錯誤時顯示 -->
+      <div [hidden]="!userEmail.errors?.required" class="invalid-feedback"> <!--在form group中才會生效-->
+        Email reruired
+      </div>
+
+      <div [hidden]="!userEmail.errors?.pattern" class="invalid-feedback"> <!--在form group中才會生效-->
+        Email is not valid
+      </div>
+      
+    </div>
+    <!-- <div class="form-group">
+        <label>Age</label>
+        <input [(ngModel)]="user.age" type="ncd Projectsumber" class="form-control" name="age">
+      </div>
+    <div class="form-group">
+        <label>Street Address</label>
+        (註解)因為被address類別包住，要多加一層address
+        <input [(ngModel)]="user.address.street" type="text" class="form-control" name="street">
+    </div>
+    <div class="form-group">
+        <label>City</label>
+        <input [(ngModel)]="user.address.city" type="text" class="form-control" name="city">
+    </div>
+    <div class="form-group">
+        <label>State</label>
+        <input [(ngModel)]="user.address.state" type="text" class="form-control" name="state">
+    </div> -->
+
+    <!-- <button (click)="addUser()" [disabled]=" user.firstName == '' || user.lastName == '' " class="btn btn-block mb-3">
+      Add New User
+    </button> -->
+
+    <button [disabled]="!userForm.form.valid" class="btn btn-block mb-3">
+      Add New User
+    </button>
+  </form>
+</div>
+
+<!-- 可用ts的布林值判斷是否顯示特定屬性，如：<button [disabled]="!enabledAdd">;
+若是input則可用ng-disabled="條件"，當條件為true時會變為disable -->
+<!-- ngClass就是class的意思，等號右邊可寫上欲加入的class名稱，例如：<button [ngClass]="currentClasses"> -->
+<!-- 加括號，中間為function名稱(JS原生定義的)，等號後面為函數事件，變數可用$，例如：<li (click)="fireEvent($event)">，其他還有(mouseover)、(mouseout)、(mousedown)按下滑鼠、(mouseup)放開滑鼠、(dblclick)點擊兩次、(drag)拖後放-->
+<!-- $event是JS原生物件(?)，代表執行點擊時當下的事件，包含各種屬性與值 -->
+
+
+<!-- 因為載入時尚未存在users物件，會影響執行，因此要加?表示若該物件不存在也可以 -->
+<ul class="list-unstyled" *ngIf="loaded && users?.length > 0">
+<!-- <ul *ngIf="users.length > 0;else noUsers"> -->
+  <!-- 加*後可接ngFor/ngIf/ngSwitch等Structure Directive(結構指令)
+  以For來說，用法為let item of List -->
+  <!-- Bootstrap樣式：mb是margin bottom的意思 -->
+  <!-- class.後面是class名稱/style.後面是欲設定值的樣式名稱，條件?是結果:否結果，
+  例如：<li [class.bg-light]="user.isActive" [style.border-color]="user.isActive ? 'green' : ''">-->
+  <li class="card card-body mb-2" *ngFor="let user of users">
+    <!-- <div class="row"> -->
+      <!-- <div class="col-sm-4"> -->
+        <!-- (1)屬性加上中括號[]="X"，代表括號內的值會透過ts檔案bind X過來 -->
+        <!-- <img *ngIf="user.image" class="img-fluid" [src]="user.image" alt=""> -->
+
+        <!-- (2)在html加上{{X}}，代表找到ts檔案中的X值bind過來 -->
+        <!-- <img *ngIf="user.image" class="img-fluid" src="{{user.image}}" alt=""> -->
+
+        <!-- (3)bind-屬性，代表找到ts檔案中的值bind到屬性中 -->
+        <!-- <img *ngIf="user.image" class="img-fluid" bind-src="user.image" alt=""> -->
+
+      <!-- </div> -->
+      <!-- <div class="col-sm-8"> -->
+        <!-- 使用[]把值bind到tag中也行，例如：<h3 [ngStyle]="currentStyles">，但選擇較直覺的做法，加上{{string}}，but只for strings的字串插值? -->
+        <!-- <h3><span [textContent]="user.firstName"></span> {{user.lastName}}</h3> -->
+        <!-- pipes的用法為 {{值 | pipes}}，有原生可使用(如大小寫/幣值等)，也可自己客製，pipe意思是管道，可將原始資料轉換為欲顯示的方式呈現，範例：{{ user.firstName | uppercase }} {{user.lastName | lowercase }}-->
+        <h3>{{ user.firstName }} {{user.lastName }}
+          <!-- onclick後可使用呼叫ts中toggleHide(user)的方式執行，亦可將欲執行的條件直接寫入 -->
+          <!-- <small *ngIf="user.age && user.address"> -->
+          <small>
+            <button (click)="user.hide = !user.hide;" class="btn btn-dark btn-sm">
+            <i [ngClass]="user.hide ? 'fa fa-plus' : 'fa fa-minus'"></i>
+          </button></small>
+        </h3>
+          <!-- && user.age意思是要該user有age值才為true -->
+          <!-- <ul class="list-group" *ngIf="!user.hide && user.age && user.address"> -->
+          <ul class="list-group" *ngIf="!user.hide">
+            <!-- <li class="list-group-item">Age: {{ user.age }}</li> -->
+            <!-- <li class="list-group-item">Address: {{ user.address.street }} {{ user.address.city }}, {{ user.address.country }}</li> -->
+            <li class="list-group-item">Email: {{ user.email }}</li>
+            <!-- currency:"幣別代碼":"顯示型態(code為純文字，symbol為符號)" -->
+            <!-- {{x|percent}} 將x數值乘以100並加上%符號，若要顯示50%則應寫為{{.5}|percent}} -->
+            <!-- <li class="list-group-item">Balance: {{ user.balance | currency:"TWD":"symbol" }} 
+            until {{ .5 | percent }}</li> -->
+            <!-- date:"日期格式"，mm/dd/yyyy、shortDate(捨去前面的0且為純數字，如3/2/2018)、longDate(如January 2, 2018)、fullDate(多給星期，如Tuesday, January 2, 2018)、shortTime(如8:30 AM)、longTime(如8:30:00 AM GMT+8) -->
+            <li class="list-group-item">Joined: {{ user.registered | date }}</li>
+            <!-- number:"小數點前顯示幾位數.小數點後顯示幾位數"，如"2.3"結果為 05.000 -->
+            <!-- 加上ngNonBindable代表該tag中的值不會進行data binding，而會直接以字串顯示於畫面，如{{ 5 | number:"2.3" }} -->
+            <!-- 加上pre的Tag後，可以將tag中的值開放為使用者輸入，並於輸入後格式化為自訂的格式，如下使用：
+            <input type="number" ng-model="money"> 開放輸入值
+	          <pre >{{ money | currency }}</pre > 將輸入值bind到pre中並格式化
+            -->
+            <!-- <li class="list-group-item" ngNonBindable><pre>{{ 5 | number:"2.3" }}</pre></li> -->
+          </ul>
+      <!-- </div>
+    </div> -->
+  </li>
+</ul>
+
+<!-- 新增一個可直接被叫用的頁面元件 用#命名 供上方else時呼叫-->
+<!-- <ng-template #noUsers><h4>No users found</h4></ng-template> -->
+
+
+<h4 *ngIf="users?.length == 0">No Users Found</h4>
+<h4 *ngIf="!loaded">Loading Users...</h4>
