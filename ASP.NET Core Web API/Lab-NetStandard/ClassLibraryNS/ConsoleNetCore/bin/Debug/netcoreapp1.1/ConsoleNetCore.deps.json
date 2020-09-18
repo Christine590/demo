@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v1.1",
+    "signature": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v1.1": {
+      "consolenetcore/1.0.0": {
+        "dependencies": {
+          "ClassLibraryNS": "1.0.0"
+        },
+        "runtime": {
+          "ConsoleNetCore.dll": {}
+        }
+      },
+      "classlibraryns/1.0.0": {
+        "runtime": {
+          "ClassLibraryNS.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "consolenetcore/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "classlibraryns/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
