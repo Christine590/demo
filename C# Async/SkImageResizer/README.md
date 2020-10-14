@@ -40,6 +40,15 @@ dotnet run -c Release
     　ＲＡＭ：16GB
     ```
 
+*我的結果紀錄及硬體資訊*
+>同步執行花費時間: 17449 ms
+>非同步的花費時間: 3476 ms
+>效能提升 80.08%
+>
+>作業系統：Microsoft Windows [Version 10.0.18362.752]
+>ＣＰＵ：1 Sockets, 2 Cores, 4 Logical processors
+>ＲＡＭ：12 GB
+
 ## 注意事項
 
 1. 程式碼需兼顧**可讀性**(請適度排版)與**執行效率**
