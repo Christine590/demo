@@ -46,7 +46,12 @@ namespace SkImageResizer
             }
         }
 
-        public async Task ResizeImagesAsync(string sourcePath, string destPath, double scale)
+        public Task ResizeImagesAsync(string sourcePath, string destPath, double scale)
+        {
+            return ResizeImagesAsync(sourcePath, destPath, scale, CancellationToken.None);
+        }
+
+        public async Task ResizeImagesAsync(string sourcePath, string destPath, double scale,CancellationToken  token)
         {
             if (!Directory.Exists(destPath))
             {
@@ -58,11 +63,19 @@ namespace SkImageResizer
             var allFiles = FindImages(sourcePath);
             foreach (var filePath in allFiles)
             {
+                if (token.IsCancellationRequested)
+                {
+                    Console.WriteLine("非同步執行已取消");
+                    Console.WriteLine($"當前執行的檔案為{filePath}");
+                    break;
+                }                 
+
                 await Task.Run(() => {
                     _ = ResizeProcessAsync(filePath, destPath, scale);
                 });
             }
         }
+
 
         public async Task ResizeProcessAsync(string filePath, string destPath, double scale)
         {
