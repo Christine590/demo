@@ -11,7 +11,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    useHash: true // 瀏覽器就不會視為整個換頁
+    })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
