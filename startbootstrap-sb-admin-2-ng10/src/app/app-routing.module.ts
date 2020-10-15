@@ -19,6 +19,7 @@ const routes: Routes = [
       { path: 'color/:type', component: ColorComponent }
     ],
   },
+  { path: 'utilitites', loadChildren: () => import('./utilitites/utilitites.module').then(m => m.UtilititesModule) },
   { path: '**', component: NotFoundComponent } // 套用於全部
 ];
 
