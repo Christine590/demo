@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { ArticleComponent } from './article/article.component';
+import { CcmaskPipe } from './ccmask.pipe';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { ArticleComponent } from './article/article.component';
     HeaderComponent,
     FooterComponent,
     AppComponent,
+    CcmaskPipe,
   ],
   imports: [
     BrowserModule,
