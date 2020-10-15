@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
     selector: 'app-header',
@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  sitename = 'hello world';
+  // sitename = 'hello world';
+  @Input() sitename = 'Hello World'; // 當為參數傳出給別人使用
   subtitle = '記載著 Will 在網路世界的學習心得與技術分享';
   counter = 12;
 
