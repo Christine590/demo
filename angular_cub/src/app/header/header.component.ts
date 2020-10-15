@@ -1,11 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnChanges{
   // sitename = 'hello world';
   @Input() sitename = 'Hello World'; // 當為參數傳出給別人使用
   subtitle = '記載著 Will 在網路世界的學習心得與技術分享';
@@ -27,4 +27,7 @@ export class HeaderComponent implements OnInit {
       this.sitename = 'The Will Will Web';
     }
   }
+
+  ngOnChanges(changes: SimpleChanges): void {
+  } // 回傳型別為空 void
 }
