@@ -1,52 +1,40 @@
-<!-- Header START -->
 <app-header [sitename]="title"></app-header>
-<!-- 可從父元件抓子元件的東西 但不建議 因為相依性太高 不好維護 -->
-<!-- {{h.sitename}} -->
-
-<!-- Header END -->
-
 <!-- CONTAINER START-->
 <section class="container">
-  <div class="row"><app-article ></app-article>
+  <div class="row">
     <section class="col-md-8 content-wrapper">
       <div id="ctl00_cphBody_divError"></div>
       <div id="ctl00_cphBody_PostList1_posts" class="posts">
-
         <!-- Article START-->
-        <app-article *ngFor="let post of data; let i=index" [item]="post" [i]="i"></app-article>
-        <!-- Article END-->
 
+        <app-article *ngFor="let post of data; let i=index" [item]="post" [i]="i"
+          (delete)="deletePost($event)"></app-article>
+
+        <!-- Article END-->
       </div>
     </section>
-
-
     <!-- Aside START -->
     <aside class="col-md-4 sidebar-wrapper">
       <div id="widgetzone_be_WIDGET_ZONE" class="widgetzone">
-
         <!-- Search START-->
         <div class="widget search">
           <div class="widget-content">
-              <div id="searchbox">
-                <!-- <input type="text" placeholder="請輸入搜尋關鍵字" accesskey="s" [(ngModel)]="keyword"> -->
-                <input type="text" #tkeyword placeholder="請輸入搜尋關鍵字" accesskey="s">
-                <input type="button" value="搜尋" id="searchbutton" (click)="doSearch(tkeyword.value)">
-                <pre>{{ keyword }}</pre>
-              </div>
+            <div id="searchbox">
+              <input #tKeyword type="text" placeholder="請輸入搜尋關鍵字" accesskey="s">
+              <input type="button" value="搜尋" (click)="doSearch(tKeyword.value)">
+              <pre>{{ keyword }}</pre>
+            </div>
           </div>
         </div>
         <!-- Search END -->
-
         <!-- Calendar START -->
         <div class="widget calendar">
-          <h4 class="widget-header">
-              文章日曆
-              <span class="pull-right"></span>
+          <h4 class="widget-header"> 文章日曆 <span class="pull-right"></span>
           </h4>
           <div class="widget-content">
             <div style="text-align: center">
               <div id="calendarContainer">
-                <table class="calendar" summary="" style="border-collapse:collapse">
+                <table class="calendar" summary="" style="border-collapse:collapse;">
                   <tbody>
                     <tr>
                       <td><a href="#">&lt;&lt;</a>&nbsp;&nbsp;</td>
@@ -55,7 +43,8 @@
                     </tr>
                   </tbody>
                 </table>
-                <table class="calendar" cellspacing="0" cellpadding="2" summary="Post calendar" title="Calendar" style="border-width:0px;border-collapse:collapse;">
+                <table class="calendar" cellspacing="0" cellpadding="2" summary="Post calendar" title="Calendar"
+                       style="border-width:0px;border-collapse:collapse;">
                   <tbody>
                     <tr>
                       <th align="center" abbr="星期一" scope="col">週一</th>
@@ -72,7 +61,8 @@
                       <td class="other" align="center" style="width:14%;">27</td>
                       <td class="other" align="center" style="width:14%;">28</td>
                       <td class="other" align="center" style="width:14%;">29</td>
-                      <td class="other" align="center" style="width:14%;"><a href="http://blog.miniasp.com/2016/04/30/default.aspx" class="exist">30</a></td>
+                      <td class="other" align="center" style="width:14%;"><a
+                           href="http://blog.miniasp.com/2016/04/30/default.aspx" class="exist">30</a></td>
                       <td class="weekend" align="center" style="width:14%;">1</td>
                     </tr>
                     <tr>
@@ -129,57 +119,52 @@
           </div>
         </div>
         <!-- Calendar END -->
-
         <!-- CategoryList START -->
         <div class="widget categorylist">
-          <h4 class="widget-header">
-              文章分類
-              <span class="pull-right"></span>
+          <h4 class="widget-header"> 文章分類 <span class="pull-right"></span>
           </h4>
           <div class="widget-content">
             <ul id="categorylist">
               <li>
-                <a href="http://blog.miniasp.com/category/feed/Net.aspx" rel="nofollow"><img src="/assets/images/rssButton.png" alt="RSS feed for .Net" class="rssButton"></a><a href="http://blog.miniasp.com/category/Net.aspx"
-                  title="分類: .Net">.Net (199)</a></li>
+                <a href="http://blog.miniasp.com/category/feed/Net.aspx" rel="nofollow"><img
+                       src="/assets/images/rssButton.png" alt="RSS feed for .Net" class="rssButton"></a><a
+                   href="http://blog.miniasp.com/category/Net.aspx" title="分類: .Net">.Net (199)</a></li>
               <li>
-                <a href="http://blog.miniasp.com/category/feed/Accessibility.aspx" rel="nofollow"><img src="/assets/images/rssButton.png" alt="RSS feed for Accessibility" class="rssButton"></a><a href="http://blog.miniasp.com/category/Accessibility.aspx"
-                  title="分類: Accessibility">Accessibility (3)</a></li>
+                <a href="http://blog.miniasp.com/category/feed/Accessibility.aspx" rel="nofollow"><img
+                       src="/assets/images/rssButton.png" alt="RSS feed for Accessibility" class="rssButton"></a><a
+                   href="http://blog.miniasp.com/category/Accessibility.aspx" title="分類: Accessibility">Accessibility
+                  (3)</a></li>
               <li>
-                <a href="http://blog.miniasp.com/category/feed/AngularJS.aspx" rel="nofollow"><img src="/assets/images/rssButton.png" alt="RSS feed for AngularJS" class="rssButton"></a><a href="http://blog.miniasp.com/category/AngularJS.aspx"
-                  title="分類: AngularJS">AngularJS (7)</a></li>
+                <a href="http://blog.miniasp.com/category/feed/AngularJS.aspx" rel="nofollow"><img
+                       src="/assets/images/rssButton.png" alt="RSS feed for AngularJS" class="rssButton"></a><a
+                   href="http://blog.miniasp.com/category/AngularJS.aspx" title="分類: AngularJS">AngularJS (7)</a></li>
               <li>
-                <a href="http://blog.miniasp.com/category/feed/ASPNET.aspx" rel="nofollow"><img src="/assets/images/rssButton.png" alt="RSS feed for ASP.NET" class="rssButton"></a><a href="http://blog.miniasp.com/category/ASPNET.aspx"
-                  title="分類: ASP.NET">ASP.NET (217)</a></li>
+                <a href="http://blog.miniasp.com/category/feed/ASPNET.aspx" rel="nofollow"><img
+                       src="/assets/images/rssButton.png" alt="RSS feed for ASP.NET" class="rssButton"></a><a
+                   href="http://blog.miniasp.com/category/ASPNET.aspx" title="分類: ASP.NET">ASP.NET (217)</a></li>
             </ul>
-
           </div>
         </div>
         <!-- CategoryList END -->
-
         <!-- MVP START -->
         <div class="widget textbox">
-          <h4 class="widget-header">
-              微軟最有價值專家
-              <span class="pull-right"></span>
+          <h4 class="widget-header"> 微軟最有價值專家 <span class="pull-right"></span>
           </h4>
           <div class="widget-content">
             <p>
               <a title="Will 保哥於 2008 年 4 月獲得微軟技術社群暨最有價值專家 第七屆第三回合微軟「最有價值專家」(Most Valuable Professional, MVP)，主要得獎領域是在 ASP/ASP.NET 技術與線上社群部分。"
-                href="http://blog.miniasp.com/post.aspx?id=92fd882f-78b7-4791-94f7-df5742d41220"><img src="/assets/images/MVP_FullColor_ForBlog.jpg" alt="Will 保哥於 2008 年 4 月獲得微軟技術社群暨最有價值專家 第七屆第三回合微軟「最有價值專家」(Most Valuable Professional, MVP)，主要得獎領域是在 ASP/ASP.NET 技術與線上社群部分。"
-                  border="0"></a>
+                 href="http://blog.miniasp.com/post.aspx?id=92fd882f-78b7-4791-94f7-df5742d41220"><img
+                     src="/assets/images/MVP_FullColor_ForBlog.jpg"
+                     alt="Will 保哥於 2008 年 4 月獲得微軟技術社群暨最有價值專家 第七屆第三回合微軟「最有價值專家」(Most Valuable Professional, MVP)，主要得獎領域是在 ASP/ASP.NET 技術與線上社群部分。"
+                     border="0"></a>
             </p>
           </div>
         </div>
         <!-- MVP END -->
-
       </div>
     </aside>
     <!-- Aside END -->
   </div>
 </section>
 <!-- CONTAINER END -->
-
-
-<!-- FOOTER START -->
-<app-footer ></app-footer>
-<!-- Footer END -->
+<app-footer></app-footer>

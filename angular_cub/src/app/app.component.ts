@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'demo1';
+  title = 'The Will Will Web';
   keyword = 'test';
 
   data = [
@@ -76,5 +76,8 @@ export class AppComponent {
     this.keyword = str;
   }
 
+  deletePost(id: number): void {
+    this.data = this.data.filter(value => value.id != id);
+  }
 
 }
