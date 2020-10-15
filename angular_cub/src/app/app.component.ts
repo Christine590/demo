@@ -13,7 +13,7 @@ export class AppComponent implements OnInit{
   data: any[] = [];
   constructor(private http: HttpClient) {} // 建構式 DI，Init前就幫你把http new好供使用
 
-  // <any[]>是傳回的型別還是傳入的型別?
+  // <any[]>是傳回的型別
   // 訂閱回傳的結果 => 固定用法
   ngOnInit(): void {
     this.http.get<any[]>('/api/articles.json').subscribe(result => {
