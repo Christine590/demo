@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { DataService } from './data.service';
 
 @Component({
   selector: 'app-root',
@@ -11,15 +12,18 @@ export class AppComponent implements OnInit{
   keyword = 'test';
 
   data: any[] = [];
-  constructor(private http: HttpClient) {} // 建構式 DI，Init前就幫你把http new好供使用
+  // constructor(private http: HttpClient) {} // 建構式 DI，Init前就幫你把http new好供使用
+  constructor(private datasvc: DataService) {} // 改注入自己的服務元件
 
   // <any[]>是傳回的型別
   // 訂閱回傳的結果 => 固定用法
   ngOnInit(): void {
-    this.http.get<any[]>('/api/articles.json').subscribe(result => {
+    // this.http.get<any[]>('/api/articles.json').subscribe(result => {
+    //   this.data = result;
+    // });
+    this.datasvc.getArticles().subscribe(result => {
       this.data = result;
     });
-
   }
 
   doSearch(str: string): void {
