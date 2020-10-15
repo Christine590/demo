@@ -15,8 +15,9 @@ const routes: Routes = [
     path: 'utilities',
     // component: component, 用不到
     children: [
-      { path: 'color', component: ColorComponent }
-    ]
+      { path: 'color', component: ColorComponent },
+      { path: 'color/:type', component: ColorComponent }
+    ],
   },
   { path: '**', component: NotFoundComponent } // 套用於全部
 ];
