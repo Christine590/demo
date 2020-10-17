@@ -11,15 +11,6 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'page1', component: Page1Component },
   { path: 'page2', component: Page2Component },
-  {
-    path: 'utilities',
-    // component: component, 用不到
-    children: [
-      { path: 'color', component: ColorComponent },
-      { path: 'color/:type', component: ColorComponent }
-    ],
-  },
-  { path: 'utilitites', loadChildren: () => import('./utilitites/utilitites.module').then(m => m.UtilititesModule) },
   { path: '**', component: NotFoundComponent } // 套用於全部
 ];
 
