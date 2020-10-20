@@ -13,6 +13,8 @@ const routes: Routes = [
   {
     path: '', // 無規則就都適用???
     component: LayoutComponent,
+    // canActivate: [AuthGuard], 如果加在這，是layoutComponent第一次被建起來時會執行，但後來切換元件就不會再執行!或是可以改為canActivateChild?
+    // canDezctivate可設定條件，點擊其他路由也不讓離開頁面
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
       { path: 'dashboard', component: DashboardComponent },
