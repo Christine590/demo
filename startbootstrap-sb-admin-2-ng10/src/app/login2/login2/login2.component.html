@@ -27,6 +27,7 @@ form.errors = {{ form.errors | json }}</pre>
 
                 <form class="user" #fg="ngForm" [formGroup]="form" (ngSubmit)="doLogin(fg)">
                   <ng-container formArrayName="users">
+                    <!--  ['controls']用途???-->
                     <ng-container *ngFor="let grp of form.get('users')['controls']; let i=index"
                          [formGroupName]="i">
 

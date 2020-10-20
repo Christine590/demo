@@ -42,16 +42,17 @@ export class Login2Component implements OnInit, OnDestroy {
     //   ]
     // ],
 
-    users: this.fb.array([]),
+    users: this.fb.array([]), // users是fromGroup的Array
     rememberMe: true
     });
 
-    this.addUser();
+    this.addUser();　// 初始化後先產生第一組
   }
 
   addUser() {
+    // const宣告表示此時的全域變數是一個常數，不允許再去修改它的值
     const fa = this.form.get('users') as FormArray;
-    fa.push(
+    fa.push( // 在陣列的最後面新增一個子元素，這裡的陣列裡面是多組fromGroup，每個fromGroup是mail與pwd的fromContrl的組合
       this.fb.group({
         email: this.fb.control('', {
           // updateOn: 'blur',
