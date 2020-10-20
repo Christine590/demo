@@ -9,6 +9,12 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   existingBodyClassName = '';
 
+  data: any = {
+    email: 'doggy.huang@gmail.com',
+    pwd: '123123',
+    rememberMe: true
+  };
+
   constructor(private router: Router, private route: ActivatedRoute) { } // 使用Router服務元件要先DI(注入)
 
   ngOnInit(): void {
