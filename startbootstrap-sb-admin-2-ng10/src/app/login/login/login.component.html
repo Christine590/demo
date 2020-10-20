@@ -47,7 +47,7 @@
                       <span *ngIf="mEmail.errors?.email">請輸入正確的 E-mail 地址格式</span>
                       <span *ngIf="mEmail.errors?.minlength">請輸入至少 {{mEmail.errors?.minlength.requiredLength}} 個字元，您目前輸入 {{mEmail.errors?.minlength.actualLength}} 個</span>
                     </div>
-                    <!-- #mEmail 用途??? -->
+                    <!-- #mEmail 用途??? 範本參考變數!用以取得ngModel的資訊-->
                     <pre>
                       mEmail.value = {{ mEmail.value }}
                       mEmail.valid = {{ mEmail.valid }}
