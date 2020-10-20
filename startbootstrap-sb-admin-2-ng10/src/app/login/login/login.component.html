@@ -50,7 +50,8 @@
                     <!-- #mEmail 用途??? 範本參考變數!用以取得ngModel的資訊-->
                     <pre>
                       mEmail.value = {{ mEmail.value }}
-                      mEmail.valid = {{ mEmail.valid }}
+                      mEmail.value = {{ this.data.email }} <!--後端取值-->
+                      mEmail.valid = {{ mEmail.valid }} <!--前端取值-->
                       mEmail.invalid = {{ mEmail.invalid }}
                       mEmail.pristine = {{ mEmail.pristine }}
                       mEmail.dirty = {{ mEmail.dirty }}
