@@ -27,10 +27,10 @@
                 </pre>
 
                 <!-- <form class="user"> -->
-                <form class="user" #form="ngForm" (ngSubmit)="doSubmit(form)">
+                <form class="user" #form="ngForm" (ngSubmit)="doLogin(form)">
                   <div ngModelGroup="group1" #mGroup1="ngModelGroup">
                   <div class="form-group">
-                    <input type="email" class="form-control form-control-user" [class.is-invalid]="mEmail.invalid"
+                    <input type="email" class="form-control form-control-user" [class.is-invalid]="form.submitted && mEmail.invalid"
                     name="email" [(ngModel)]="data.email" required email #mEmail="ngModel"
                     aria-describedby="emailHelp" placeholder="Enter Email Address..."
                     minlength="3" maxlength="50"
@@ -42,7 +42,7 @@
                       3. 加上?是判斷不為Null時才找required等項目為true還是false
                       ※ *ngIf及?語法可以二擇一，看情況使用
                      -->
-                    <div *ngIf="mEmail.invalid" class="invalid-feedback">
+                    <div *ngIf="form.submitted && mEmail.invalid" class="invalid-feedback">
                       <span *ngIf="mEmail.errors?.required">請輸入 E-mail 地址</span>
                       <span *ngIf="mEmail.errors?.email">請輸入正確的 E-mail 地址格式</span>
                       <span *ngIf="mEmail.errors?.minlength">請輸入至少 {{mEmail.errors?.minlength.requiredLength}} 個字元，您目前輸入 {{mEmail.errors?.minlength.actualLength}} 個</span>
@@ -62,7 +62,7 @@
                     </pre>
                   </div>
                   <div class="form-group">
-                    <input type="password" class="form-control form-control-user" id="exampleInputPassword"
+                    <input type="password" class="form-control form-control-user" [class.is-invalid]="form.submitted && mPwd.invalid"
                     name="pwd" [(ngModel)]="data.pwd" required #mPwd="ngModel"
                     placeholder="Password">
                   </div>
@@ -75,7 +75,8 @@
                     </div>
                   </div>
                   <!-- <button type="button" (click)="doLogin()" class="btn btn-primary btn-user btn-block"> Login </button> -->
-                  <button type="submit" [disabled]="form.invalid" class="btn btn-primary btn-user btn-block"> Login </button>
+                  <!-- 暫時加上false以利測試 -->
+                  <button type="submit" [disabled]="false && form.invalid" class="btn btn-primary btn-user btn-block"> Login </button>
                   <hr>
                   <a href="index.html" class="btn btn-google btn-user btn-block">
                     <i class="fab fa-google fa-fw"></i> Login with Google </a>

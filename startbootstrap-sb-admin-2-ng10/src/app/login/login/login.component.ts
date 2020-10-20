@@ -11,8 +11,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   existingBodyClassName = '';
 
   data: any = {
-    email: 'doggy.huang@gmail.com',
-    pwd: '123123',
+    email: '',
+    pwd: '',
     rememberMe: true
   };
 
