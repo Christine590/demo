@@ -6,6 +6,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { Page1Component } from './page1/page1.component';
 import { Page2Component } from './page2/page2.component';
 import { LayoutComponent } from './layout/layout/layout.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -15,7 +16,7 @@ const routes: Routes = [
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
       { path: 'dashboard', component: DashboardComponent },
-      { path: 'page1', component: Page1Component },
+      { path: 'page1', component: Page1Component, canActivate: [AuthGuard] }, // canActivate型別是any[] 任意陣列
       { path: 'page2', component: Page2Component },
       { path: 'utilities', loadChildren: () => import('./utilities/utilities.module').then(m => m.UtilitiesModule) },
     ]
