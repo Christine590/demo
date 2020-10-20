@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -24,25 +24,47 @@ export class Login2Component implements OnInit, OnDestroy {
     document.body.className = 'bg-gradient-primary';
 
     this.form = this.fb.group ({
-      // 作法一：以email為例 => 可讀性較佳也較好維護
-    email: this.fb.control('33', { // 33是預設值
-      // updateOn: 'blur', // 填完之後滑鼠移開並點擊他處才會生效 => 進行驗證
-      validators: [
-        Validators.required,
-        Validators.email,
-        Validators.minLength(3),
-        Validators.maxLength(50)
-      ]
-    }),
-    // 作法二：以密碼為例 => 程式碼精簡但較不好閱讀
-    pwd: ['444', [
-        Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(16)
-      ]
-    ],
+    //   // 作法一：以email為例 => 可讀性較佳也較好維護
+    //   email: this.fb.control('33', { // 33是預設值
+    //   // updateOn: 'blur', // 填完之後滑鼠移開並點擊他處才會生效 => 進行驗證
+    //   validators: [
+    //     Validators.required,
+    //     Validators.email,
+    //     Validators.minLength(3),
+    //     Validators.maxLength(50)
+    //   ]
+    // }),
+    //   // 作法二：以密碼為例 => 程式碼精簡但較不好閱讀
+    //   pwd: ['444', [
+    //     Validators.required,
+    //     Validators.minLength(3),
+    //     Validators.maxLength(16)
+    //   ]
+    // ],
+
+    users: this.fb.array([]),
     rememberMe: true
     });
+
+    this.addUser();
+  }
+
+  addUser() {
+    const fa = this.form.get('users') as FormArray;
+    fa.push(
+      this.fb.group({
+        email: this.fb.control('', {
+          // updateOn: 'blur',
+          validators: [
+            Validators.required,
+            Validators.email,
+            Validators.minLength(3),
+            Validators.maxLength(50)
+          ]
+        }),
+        pwd: ['', [ Validators.required, Validators.minLength(3), Validators.maxLength(16)]],
+      })
+    );
   }
 
   ngOnDestroy(): void {
