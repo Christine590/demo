@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -29,5 +30,11 @@ export class LoginComponent implements OnInit, OnDestroy {
   doLogin() {
     localStorage.setItem('token', '123123123213'); // 預設token以進行登入驗證的測試
     this.router.navigateByUrl(this.route.snapshot.queryParamMap.get('returnUrl')); // 取得當前URL所帶的returnUrl參數
+  }
+
+  doSubmit(form: NgForm) {
+    if (form.valid) {
+      // TODO: HttpClient post
+    }
   }
 }
