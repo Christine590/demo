@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     document.body.className = this.existingBodyClassName; // 離開此頁時移除class
   }
 
-  doLogin() {
+  doLogin(form: NgForm) {
     localStorage.setItem('token', '123123123213'); // 預設token以進行登入驗證的測試
     this.router.navigateByUrl(this.route.snapshot.queryParamMap.get('returnUrl')); // 取得當前URL所帶的returnUrl參數
   }
