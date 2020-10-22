@@ -1,11 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TaiwanIdValidator } from './TaiwanIdValidator';
 
 @Component({
   templateUrl: './login2.component.html',
   styleUrls: ['./login2.component.css']
 })
+
 export class Login2Component implements OnInit, OnDestroy {
 
   form: FormGroup;
@@ -72,9 +74,14 @@ export class Login2Component implements OnInit, OnDestroy {
           // updateOn: 'blur',
           validators: [
             Validators.required,
-            Validators.email,
-            Validators.minLength(3),
-            Validators.maxLength(50)
+            // Validators.email,
+            // Validators.minLength(3),
+            // Validators.maxLength(50)
+
+            // 示範身分證驗證器
+            TaiwanIdValidator,
+            Validators.minLength(10),
+            Validators.maxLength(10)
           ]
         }),
         pwd: ['', [ Validators.required, Validators.minLength(3), Validators.maxLength(16)]],
