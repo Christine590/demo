@@ -9,10 +9,17 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class Login2Component implements OnInit, OnDestroy {
 
   form: FormGroup;
-  data: any = {
-    email: '',
-    pwd: '',
-    rememberMe: true
+  data = {
+    users: [
+      {
+        email: 'user1@example.com',
+        pwd: '123123'
+      },
+      {
+        email: 'user2@example.com',
+        pwd: '321321'
+      }
+    ],
   };
 
   existingBodyClassName = '';
@@ -46,7 +53,14 @@ export class Login2Component implements OnInit, OnDestroy {
     rememberMe: true
     });
 
-    this.addUser();　// 初始化後先產生第一組
+    // this.addUser();　// 初始化後先產生第一組
+
+    // tslint:disable-next-line: prefer-for-of 只是建議用for-of，調整為註解讓他不要出現警告的方法???
+    for (let i = 0; i < this.data.users.length; i++) { // 有幾組users
+      this.addUser();
+    }
+
+    this.form.reset(this.data); // 可帶或不帶預設內容，不帶的話，括號裡面不用寫東西
   }
 
   addUser() {
