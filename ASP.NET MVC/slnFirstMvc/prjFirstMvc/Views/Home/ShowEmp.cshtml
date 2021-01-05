@@ -1,0 +1,25 @@
+﻿@model IList<prjFirstMvc.Models.CEmployee>
+@*使用Model裡面的物件並定義型別*@
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ShowEmp</title>
+</head>
+<body>
+    @foreach (var item in Model)
+    {
+        <div>
+            編號:@item.fId<br />
+            姓名:@item.fName<br />
+            薪資:@item.fSalary<br />
+        </div>
+    }
+</body>
+</html>
