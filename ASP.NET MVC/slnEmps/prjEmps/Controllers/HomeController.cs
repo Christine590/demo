@@ -60,5 +60,14 @@ namespace prjEmps.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Delete(int fId)
+        {
+            var emp = db.tEmployee.Where(m => m.fId == fId).FirstOrDefault(); // 找到該筆資料
+            db.tEmployee.Remove(emp); // 使用移除的方法
+
+            db.SaveChanges(); // 只要有資料庫異動都一定要 SaveChanges
+            return RedirectToAction("Index");
+        }
+
     }
 }

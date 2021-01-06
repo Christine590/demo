@@ -18,14 +18,17 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>@item.fId</td>
-            <td>@item.fName</td>
-            <td>@item.fPhone</td>
-            <td>@item.fSalary</td>
-            @*將fId當QueryString一起帶到Edit頁*@
-            <td><a href="@Url.Action("Edit")?fId=@item.fId" class="btn btn-info">修改</a></td>
-        </tr>
+<tr>
+    <td>@item.fId</td>
+    <td>@item.fName</td>
+    <td>@item.fPhone</td>
+    <td>@item.fSalary</td>
+    @*將fId當QueryString一起帶到Edit頁*@
+    <td><a href="@Url.Action("Edit")?fId=@item.fId" class="btn btn-info">修改</a></td>
+    <td><a href="@Url.Action("Delete")?fId=@item.fId" 
+           onclick="return confirm('確定要刪除嗎?');" class="btn btn-danger">刪除</a></td>
+           @*confirm( )跟 alert() 一樣是瀏覽器訊息視窗*@
+</tr>
     }
 </table>
 
