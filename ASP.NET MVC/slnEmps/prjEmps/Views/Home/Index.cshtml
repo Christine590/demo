@@ -23,6 +23,8 @@
             <td>@item.fName</td>
             <td>@item.fPhone</td>
             <td>@item.fSalary</td>
+            @*將fId當QueryString一起帶到Edit頁*@
+            <td><a href="@Url.Action("Edit")?fId=@item.fId" class="btn btn-info">修改</a></td>
         </tr>
     }
 </table>
