@@ -16,6 +16,8 @@ namespace prjEmps
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
+                // default是沒有寫controller name及action name時也會到的地方
+                // 例如輸入 http://localhost:0000/ 之類的
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
         }
