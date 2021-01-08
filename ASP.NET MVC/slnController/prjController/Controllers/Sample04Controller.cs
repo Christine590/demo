@@ -18,5 +18,15 @@ namespace prjController.Controllers
             list.Add(new Product() { PId = "A03", PName = "Switch", Price = 14500 });
             return View(list);
         }
+
+        public ActionResult ShowProductForViewBag()
+        {
+            List<Product> list = new List<Product>();
+            list.Add(new Product() { PId = "A01", PName = "XBox One", Price = 12800 });
+            list.Add(new Product() { PId = "A02", PName = "PS 4", Price = 9500 });
+            list.Add(new Product() { PId = "A03", PName = "Switch", Price = 14500 });
+            ViewBag.Product = list; // ViewBag可放string、int或object等
+            return View();
+        }
     }
 }

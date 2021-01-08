@@ -110,6 +110,7 @@
     <Content Include="Views\Sample02\Create.cshtml" />
     <Content Include="Views\Sample03\Create.cshtml" />
     <Content Include="Views\Sample04\ShowProduct.cshtml" />
+    <Content Include="Views\Sample04\ShowProductForViewBag.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,0 +1,27 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ShowProductForViewBag</title>
+</head>
+<body>
+    <div>
+        @*ViewBag.Product是由後端存入的List*@
+        @foreach (var item in ViewBag.Product)
+        {
+            <ul>
+                @*用ViewBag寫不會有錯，但會無法直接.出來，容易寫錯，所以還是自訂Model佳*@
+                <li>編號：@item.PId</li>
+                <li>品名：@item.PName</li>
+                <li>單價：@item.Price</li>
+            </ul>
+        }
+    </div>
+</body>
+</html>
