@@ -1,0 +1,32 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+<body>
+    <form method="post" action="@Url.Action("Create")">
+        <p>編號：<input type="text" name="PId" value="@ViewBag.PId" /></p>
+        <p>品名：<input type="text" name="PName" value="@ViewBag.PName" /></p>
+        <p>單價：<input type="number" name="Price" /></p>
+        <p><input type="submit" value="確定" /></p>
+    </form>
+    <hr />
+    @{
+        if (ViewBag.PId != null && ViewBag.PName != null && ViewBag.Price != null)
+        {
+            <p>完成新增產品資料</p>
+            <p>
+                編號：@ViewBag.PId | 品名：@ViewBag.PName |
+                單價：@ViewBag.Price
+            </p>
+        }
+    }
+</body>
+</html>
