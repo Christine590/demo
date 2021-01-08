@@ -1,0 +1,29 @@
+﻿
+@model List<prjController.Models.Product>
+@*將Model訂為Product類別的List，才可用for迴圈，只有寫<prjController.Models.Product>的話會視為單一個class物件*@
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ShowProduct</title>
+</head>
+<body>
+    <div>
+        @*因為上面有定義，所以知道Model是Product類別，因此可以用.的方式取得下面的屬性*@
+        @foreach (var item in Model)
+        {
+            <ul>
+                <li>編號：@item.PId</li>
+                <li>品名：@item.PName</li>
+                <li>單價：@item.Price</li>
+            </ul>
+        }
+    </div>
+</body>
+</html>
