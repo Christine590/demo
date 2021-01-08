@@ -1,0 +1,36 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+<body>
+    <div>
+        <form method="post" action="@Url.Action("Create")">
+            @*將值保留在欄位內顯示的話就要加value，否則只會單獨POST到後端存進ViewBag，不會綁定顯示於欄位*@
+            <p>編號：<input type="text" name="PId" value="@ViewBag.PId" /></p>
+            <p>品名：<input type="text" name="PName" value="@ViewBag.PName" /></p>
+            <p>單價：<input type="number" name="Price" /></p>
+            <p><input type="submit" value="確定" /></p>
+        </form>
+        <hr />
+        @{
+            if (ViewBag.PId != null && ViewBag.PName != null &&
+                ViewBag.Price != null)
+            {
+                <p>完成新增產品資料</p>
+                <p>
+                    編號：@ViewBag.PId | 品名：@ViewBag.PName |
+                    單價：@ViewBag.Price
+                </p>
+            }
+        }
+    </div>
+</body>
+</html>
