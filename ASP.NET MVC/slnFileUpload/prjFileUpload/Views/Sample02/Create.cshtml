@@ -1,0 +1,24 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+<body>
+    <form enctype="multipart/form-data" method="post"
+          action="@Url.Action("Create")">
+        @*欲在後端一次以陣列接下所有圖檔，前端input的name必須全都相同，以這裡來說就是 name="myfiles" *@
+        @*後端用for迴圈寫，所以前端要新增幾欄都可以，注意name相同即可*@
+        <p>照片1<input type="file" name="myfiles" /></p>
+        <p>照片2<input type="file" name="myfiles" /></p>
+        <p>照片3<input type="file" name="myfiles" /></p>
+        <p><input type="submit" value="上傳" /></p>
+    </form>
+</body>
+</html>
