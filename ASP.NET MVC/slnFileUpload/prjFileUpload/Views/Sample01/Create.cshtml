@@ -1,0 +1,22 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+<body>
+    <div>
+        @*欲使用檔案上傳就一定要加 enctype="multipart/form-data"  *@
+        <form enctype="multipart/form-data" method="post" action="@Url.Action("Create")">
+            <p>照片<input type="file" name="myfile" /></p>
+            <p><input type="submit" value="上傳" /></p>
+        </form>
+    </div>
+</body>
+</html>
