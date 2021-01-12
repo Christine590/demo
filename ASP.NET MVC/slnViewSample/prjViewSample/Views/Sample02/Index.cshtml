@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<prjViewSample.Models.Movie>
 @{
     Layout = null;
 }
@@ -9,12 +9,51 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
+    <style>
+        .link {
+            margin: 10px;
+            padding: 5px;
+            border-style: solid;
+            border-color: blue;
+            text-decoration: none;
+        }
+
+            .link:hover {
+                background-color: #ebffb9;
+            }
+    </style>
 </head>
 <body>
+    <h2>跟著實務學習ASP.NET MVC導讀系列課程影片</h2>
+    <p>
+        @{
+            int i = 0;
+            foreach (var item in Model)
+            {
+                @*指定前往的Action並帶上key為n的參數值*@
+                <a href="@Url.Action("Index")?n=@i"
+                   class="link"
+                   onmouseover="fnMouseOver('@item.Name');"
+                   onmouseout="fnMouseOut();">
+                    第 @(i+1) 集
+                </a>
+                i++;
+            }
+        }
+        <span id="spanTitle"></span>
+    </p>
     <iframe width="560" height="315"
             src="https://www.youtube.com/embed/@ViewBag.MovieId"
             frameborder="0" allow="autoplay; encrypted-media"
             allowfullscreen>
     </iframe>
+    <script>
+        function fnMouseOver(title) {
+            document.getElementById("spanTitle").innerHTML = title;
+        }
+        function fnMouseOut() {
+            document.getElementById("spanTitle").innerHTML = "";
+        }
+    </script>
 </body>
 </html>
