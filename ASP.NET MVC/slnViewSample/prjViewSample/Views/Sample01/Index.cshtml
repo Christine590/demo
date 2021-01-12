@@ -1,0 +1,47 @@
+﻿@model List<prjViewSample.Models.Book>
+
+@*@model  IEnumerable<prjViewSample.Models.Book>*@
+@*為何範例都是加上 I 以介面方式引入???*@
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <table border="1">
+        <tr>
+            <td>書號</td>
+            <td>書名</td>
+            <td>單價</td>
+        </tr>
+        @{
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                    <td>
+                        @{
+                            if (item.Price >= 600)
+                            {
+                                <span style="background-color:#ff0000;color:white;">@item.Price</span>
+                            }
+                            else
+                            {
+                                @item.Price
+                            }
+                        }
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+</body>
+</html>
