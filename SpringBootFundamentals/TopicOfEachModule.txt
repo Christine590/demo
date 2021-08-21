@@ -1,0 +1,7 @@
+Module3: First Spring Boot application
+Module4: Access Data with H2
+Module5: Spring MVC
+Module6: RESTful WebApplication
+Module7: GraphQL Server
+Module8: Actuators, Metrics and Health Indicators
+Module9: Testing
