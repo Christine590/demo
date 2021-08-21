@@ -1,2 +1,2 @@
 # CourseProjects
-課程練習 Angular/Python/C#
+課程練習
