@@ -1,2 +1,2 @@
-# CourseProjects
-課程練習
+# Practices
+It includes all the projects I created based on self-learning courses.
