@@ -2,6 +2,7 @@ package com.example.workflow;
 
 import javax.inject.Named;
 
+import org.camunda.bpm.engine.delegate.BpmnError;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,9 @@ public class ReserveSeatOnBoat implements JavaDelegate{
 			ticketType = "First class";
 		} else if (moneyDouble >= 5000) {
 			ticketType = "Bussiness class";
+		} else if (moneyDouble <= 10) {
+            ticketType = "Stowaway Class";
+            throw new BpmnError("Fall_Overboard", "A Cheap ticket has led to a small wave throwing you overboard."); //parameters: errorCode, message
 		}
 		
 		delegateExecution.setVariable("ticketType", ticketType);
